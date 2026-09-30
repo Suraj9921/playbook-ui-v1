@@ -54,6 +54,7 @@ export default function AppShell() {
   }
 
   const ThemeIcon = theme === 'dark' ? Sun : Moon
+  const themeLabel = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
 
   return (
     <div className="min-h-screen md:grid md:grid-cols-[240px_1fr]">
@@ -71,10 +72,10 @@ export default function AppShell() {
 
         <div className="mt-auto space-y-3">
           <div className="flex gap-1">
-            <button onClick={toggleTheme} className="btn-ghost flex-1" aria-label="Toggle theme">
+            <button onClick={toggleTheme} className="btn-ghost flex-1" title={themeLabel} aria-label={themeLabel}>
               <ThemeIcon className="size-4" />
             </button>
-            <button onClick={resetDemo} className="btn-ghost flex-1" title="Reset demo data">
+            <button onClick={resetDemo} className="btn-ghost flex-1" title="Reset demo data" aria-label="Reset demo data">
               <RotateCcw className="size-4" />
             </button>
           </div>
@@ -98,7 +99,7 @@ export default function AppShell() {
       <header className="sticky top-0 z-20 flex items-center justify-between border-b border-zinc-200 bg-white/90 px-4 py-3 backdrop-blur md:hidden dark:border-zinc-800 dark:bg-zinc-900/90">
         <Logo />
         <div className="flex items-center gap-1">
-          <button onClick={toggleTheme} className="btn-ghost px-2" aria-label="Toggle theme">
+          <button onClick={toggleTheme} className="btn-ghost px-2" title={themeLabel} aria-label={themeLabel}>
             <ThemeIcon className="size-4" />
           </button>
           {currentUser ? (
