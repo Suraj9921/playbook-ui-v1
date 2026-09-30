@@ -9,6 +9,12 @@ const STYLES = {
   past: 'border-transparent bg-zinc-100 text-zinc-300 dark:bg-zinc-900 dark:text-zinc-700',
 }
 
+const TITLES = {
+  blocked: 'Blocked for maintenance',
+  booked: 'Already booked',
+  past: 'This time has passed',
+}
+
 /**
  * mode="book": players pick free hours.
  * mode="block": owners toggle free <-> blocked; booked hours stay locked.
@@ -29,7 +35,7 @@ export default function SlotGrid({ slots, selected = [], onToggle, mode = 'book'
               onClick={() => onToggle(hour)}
               className={`flex items-center justify-center gap-1 rounded-xl border px-2 py-3 text-sm font-semibold transition disabled:cursor-not-allowed ${style}`}
               aria-pressed={isSelected}
-              title={state === 'blocked' ? 'Blocked for maintenance' : state === 'booked' ? 'Already booked' : undefined}
+              title={TITLES[state]}
             >
               {isSelected && <Check className="size-3.5" />}
               {state === 'blocked' && <Ban className="size-3.5" />}
@@ -50,6 +56,7 @@ function Legend({ mode }) {
     mode === 'book' && ['Your pick', STYLES.selected],
     ['Booked', STYLES.booked],
     ['Blocked', STYLES.blocked],
+    ['Past', STYLES.past],
   ].filter(Boolean)
   return (
     <div className="mt-3 flex flex-wrap gap-4 text-xs text-zinc-500">
